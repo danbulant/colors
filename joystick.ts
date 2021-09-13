@@ -1,4 +1,4 @@
-import { exec, readUTF, writeUTF } from "./utils";
+import { exec, readUTF, writeUTF } from "./utils.js";
 import * as fs from "fs";
 
 interface IJoyStick {
