@@ -1,5 +1,7 @@
 import { exec, readUTF, writeUTF } from "./utils.js";
 import * as fs from "fs";
+import struct from "python-struct";
+import chunker from "stream-chunker";
 
 interface IJoyStick {
     name: string;
@@ -22,6 +24,12 @@ export class JoyStick implements IJoyStick {
         this.name = data.name;
         this.led = data.led;
         this.dev = data.dev;
+    }
+
+    createEventStream() {
+        const stream = fs.createReadStream(this.dev);
+        return stream
+            .pipe(chunker(struct.sizeOf("LhBB")));
     }
 
     async getColors() {

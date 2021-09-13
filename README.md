@@ -6,6 +6,16 @@ It's not supposed to be easy to setup, but if you need help just contact me. For
 
 Project highly depends on linux (uses sys class to control the LEDs) and requires root (non-root operations are setuid'd internally).
 
+## Start
+
+To start it up, you need to run it as root and pass `--loader=ts-node/esm` to node:
+
+```sh
+sudo node --loader=ts-node/esm <file>
+```
+
+where `<file>` is the file to run (`index.ts` in one of the folders).
+
 ## Spotify colors
 
 Uses DBUS which needs your username. For now just edit the utils function getUsername to return your username.
